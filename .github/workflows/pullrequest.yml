@@ -1,9 +1,11 @@
 name: Periodic Dependency Update
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: "0 0 * * 0"  # Runs every Sunday at midnight (UTC)
-
 jobs:
   dependency-update:
     runs-on: ubuntu-latest
