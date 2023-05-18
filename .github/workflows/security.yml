@@ -26,10 +26,10 @@ jobs:
     - name: Install ci
       run: npm ci
     - name: Run security vulnerability check
-      run: npx snyk test --all-projects --json > snyk-report.json
+      run: npx npm audit --json > npm-audit-report.json
 
-    - name: Upload Snyk report as an artifact
+    - name: Upload npm audit report as an artifact
       uses: actions/upload-artifact@v2
       with:
-        name: snyk-report
-        path: snyk-report.json
+        name: npm-audit-report
+        path: npm-audit-report.json
