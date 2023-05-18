@@ -33,13 +33,4 @@ jobs:
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
-        with:
-          branch: dependency-update
-          title: Update dependencies
-          commit-message: Update dependencies
-          body: |
-            This pull request updates the project dependencies.
-
-            Please review and merge if everything looks good.
-
-          labels: dependencies
+       
