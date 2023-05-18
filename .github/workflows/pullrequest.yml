@@ -1,0 +1,43 @@
+name: Periodic Dependency Update
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Runs every Sunday at midnight (UTC)
+
+jobs:
+  dependency-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update dependencies
+        run: npm update
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "nvya.dhariwal@yahoo.com"
+          git config --local user.name "GitHub Actions"
+          git commit -a -m "Update dependencies" --allow-empty
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: dependency-update
+          title: Update dependencies
+          commit-message: Update dependencies
+          body: |
+            This pull request updates the project dependencies.
+
+            Please review and merge if everything looks good.
+
+          labels: dependencies
