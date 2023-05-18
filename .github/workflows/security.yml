@@ -23,7 +23,8 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-
+    - name: Install ci
+      run: npm ci
     - name: Run security vulnerability check
       run: npx snyk test --all-projects --json > snyk-report.json
 
